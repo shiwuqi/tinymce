@@ -58,7 +58,7 @@ const cloneFormats = function (oldCell: SugarElement, newCell: SugarElement, for
 const cellOperations = function (mutate: (e1: SugarElement, e2: SugarElement) => void, doc: SugarElement, formatsToClone: Optional<string[]>): Generators {
   const newCell = function (prev: CellSpan) {
     const docu = Traverse.owner(prev.element);
-    const td = SugarElement.fromTag(SugarNode.name(prev.element), docu.dom);
+    const td = SugarElement.fromTag(SugarNode.name(prev.element) as 'td' | 'th', docu.dom);
 
     const formats = formatsToClone.getOr([ 'strong', 'em', 'b', 'i', 'span', 'font', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div' ]);
 
@@ -79,7 +79,7 @@ const cellOperations = function (mutate: (e1: SugarElement, e2: SugarElement) =>
 
   const newCol = (prev: CellSpan) => {
     const doc = Traverse.owner(prev.element);
-    const col = SugarElement.fromTag(SugarNode.name(prev.element), doc.dom);
+    const col = SugarElement.fromTag(SugarNode.name(prev.element) as 'col', doc.dom);
     // inherit the style and width, dont inherit the row height
     Css.copy(prev.element, col);
     // dont inherit the width of spanning columns

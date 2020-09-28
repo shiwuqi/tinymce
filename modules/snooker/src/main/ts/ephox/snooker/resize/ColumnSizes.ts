@@ -25,7 +25,7 @@ const getRawH = function (cell: SugarElement) {
 };
 
 const getWidthFrom = function <T> (warehouse: Warehouse, getWidth: (cell: SugarElement, tableSize: TableSize) => T, fallback: (deduced: Optional<number>) => T, tableSize: TableSize) {
-  const columns = Warehouse.hasColumns(warehouse) ? Blocks.cols(warehouse) : Blocks.columns(warehouse);
+  const columns: Optional<SugarElement>[] = Warehouse.hasColumns(warehouse) ? Blocks.cols(warehouse) : Blocks.columns(warehouse);
 
   const backups = Arr.map(columns, function (cellOption) {
     return cellOption.map(width.edge);
